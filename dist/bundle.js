@@ -15,17 +15,27 @@
   \********************/
 /***/ ((__unused_webpack_module, __unused_webpack_exports, __webpack_require__) => {
 
-eval("const openCamera = __webpack_require__(/*! ./openCamera */ \"./src/openCamera.js\");\r\n\r\nopenCamera();\r\n\r\nconsole.log('Xin chao cac ban');\n\n//# sourceURL=webpack://stream/./src/app.js?");
+eval("const openStream = __webpack_require__(/*! ./openStream */ \"./src/openStream.js\");\r\n\r\nopenStream();\r\n\r\nconsole.log('Xin chao cac ban');\n\n//# sourceURL=webpack://stream/./src/app.js?");
 
 /***/ }),
 
-/***/ "./src/openCamera.js":
+/***/ "./src/openStream.js":
 /*!***************************!*\
-  !*** ./src/openCamera.js ***!
+  !*** ./src/openStream.js ***!
   \***************************/
+/***/ ((module, __unused_webpack_exports, __webpack_require__) => {
+
+eval("const playVideo = __webpack_require__(/*! ./playVideo */ \"./src/playVideo.js\");\r\n\r\nfunction openStream() {\r\n    navigator.mediaDevices.getUserMedia({ audio: false, video: true })\r\n        .then(stream => playVideo(stream, 'localStream'))\r\n        .catch(err => console.log(err));\r\n}\r\n\r\nmodule.exports = openStream;\n\n//# sourceURL=webpack://stream/./src/openStream.js?");
+
+/***/ }),
+
+/***/ "./src/playVideo.js":
+/*!**************************!*\
+  !*** ./src/playVideo.js ***!
+  \**************************/
 /***/ ((module) => {
 
-eval("function openCamera() {\r\n    navigator.mediaDevices.getUserMedia({ audio: false, video: true })\r\n        .then(stream => {\r\n            const video = document.getElementById('localStream');\r\n            video.srcObject = stream;\r\n            video.onloadedmetadata = () => {\r\n                video.play();\r\n            };\r\n        })\r\n        .catch(err => console.log(err))\r\n}\r\n\r\nmodule.exports = openCamera;\n\n//# sourceURL=webpack://stream/./src/openCamera.js?");
+eval("function playVideo(stream, idVideo) {\r\n    const video = document.getElementById(idVideo);\r\n    video.srcObject = stream;\r\n    video.onloadedmetadata = () => {\r\n        video.play();\r\n    };\r\n}\r\n\r\nmodule.exports = playVideo;\n\n//# sourceURL=webpack://stream/./src/playVideo.js?");
 
 /***/ })
 
